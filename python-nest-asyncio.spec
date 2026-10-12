@@ -1,6 +1,6 @@
 Name:		python-nest-asyncio
 Version:	1.6.0
-Release:	1
+Release:	2
 Summary:	Patch asyncio to allow nested event loops
 License:	BSD-2-Clause
 Group:		Development/Python
@@ -24,6 +24,10 @@ run inside an event loop.
 # not left unpackaged (and extra tests stay quiet).
 %install -a
 rm -rf %{buildroot}%{py_sitedir}/__pycache__
+
+%build -p
+# The sdist is not a git checkout, so the versioning backend needs the version.
+export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 
 %files
 %doc README.rst
